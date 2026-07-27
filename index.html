@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src data:; frame-src https://orb.farm https://sandspiel.club https://littlealchemy2.com https://www.decisionproblem.com https://princejs.com; base-uri 'none'; form-action 'none'; object-src 'none'">
+<title>Renzo Games 🦔</title>
+<style>
+  :root { --bg:#0f1115; --card:#1a1d24; --accent:#4ade80; --text:#e8eaed; --muted:#8b909a; }
+  * { box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  html,body { margin:0; padding:0; height:100%; }
+  body { background:var(--bg); color:var(--text); font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif; }
+  header { padding:18px 16px 8px; }
+  h1 { margin:0; font-size:22px; display:flex; align-items:center; gap:8px; }
+  .sub { color:var(--muted); font-size:13px; margin-top:4px; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:12px; padding:12px 16px 20px; }
+  .card { background:var(--card); border:1px solid #262a33; border-radius:14px; padding:14px; cursor:pointer; transition:transform .08s, border-color .15s; display:flex; flex-direction:column; gap:6px; }
+  .card:active { transform:scale(.97); }
+  .card:hover { border-color:var(--accent); }
+  .card .emoji { font-size:30px; }
+  .card .name { font-weight:600; font-size:15px; line-height:1.2; }
+  .card .meta { color:var(--muted); font-size:12px; }
+  .badges { display:flex; align-items:center; gap:6px; width:100%; }
+  .badge { display:inline-block; font-size:10px; padding:2px 6px; border-radius:6px; background:#2a2f3a; color:var(--muted); width:fit-content; }
+  .badge.embed { background:#14351f; color:var(--accent); }
+  .badge.newtab { background:#3a2f14; color:#fbbf24; }
+  .badge.app { background:#14233a; color:#60a5fa; }
+  .rating { margin-left:auto; font-size:12px; color:#fbbf24; font-weight:700; }
+  .section-title { padding:8px 16px 0; font-size:13px; color:var(--muted); font-weight:600; text-transform:uppercase; letter-spacing:.04em; }
+
+  /* player overlay */
+  #player { position:fixed; inset:0; background:#000; display:none; flex-direction:column; z-index:100; }
+  #player.open { display:flex; }
+  #bar { display:flex; align-items:center; gap:10px; padding:calc(env(safe-area-inset-top) + 8px) 12px 8px; background:#0b0d10; }
+  #bar .title { flex:1; font-size:14px; color:var(--muted); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  #bar button { background:#1a1d24; color:var(--text); border:1px solid #262a33; border-radius:10px; padding:8px 12px; font-size:14px; cursor:pointer; }
+  #bar button:active { transform:scale(.95); }
+  #frameWrap { flex:1; position:relative; background:#000; }
+  #frame { width:100%; height:100%; border:0; display:block; }
+  #fallback { position:absolute; inset:0; display:none; flex-direction:column; align-items:center; justify-content:center; gap:16px; padding:24px; text-align:center; color:var(--muted); }
+  #fallback.show { display:flex; }
+  #fallback a { background:var(--accent); color:#04210f; font-weight:700; text-decoration:none; padding:14px 22px; border-radius:12px; font-size:16px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>🦔 Renzo Games</h1>
+  <div class="sub">Tap a game → it opens fullscreen, no borders.</div>
+</header>
+<div class="grid" id="grid"></div>
+
+<div class="section-title">📱 Android app</div>
+<div class="grid" id="appGrid"></div>
+
+<div id="player">
+  <div id="bar">
+    <button id="closeBtn">‹ Back</button>
+    <div class="title" id="playerTitle"></div>
+    <button id="fsBtn">⛶ Fullscreen</button>
+    <button id="openBtn">↗ New tab</button>
+  </div>
+  <div id="frameWrap">
+    <iframe id="frame" allow="fullscreen; gamepad" allowfullscreen referrerpolicy="no-referrer"></iframe>
+    <div id="fallback">
+      <div>This game can't be embedded (it blocks iframes).<br>Open it fullscreen in its own tab:</div>
+      <a id="fallbackLink" href="#" target="_blank" rel="noopener">▶ Open game</a>
+    </div>
+  </div>
+</div>
+
+<script>
+// embed:true = can be shown inside an iframe; false = must open in a new tab
+const GAMES = [
+  { name:"Cube Escape: The Lake", emoji:"🎣", type:"Escape room",     embed:false,  url:"https://www.kongregate.com/en/games/rustylake/cube-escape-the-lake" },
+  { name:"orb.farm",          emoji:"🐟", type:"Relaxing aquarium",   embed:true,  url:"https://orb.farm/", rating:"4/5" },
+  { name:"Sandspiel",         emoji:"🏖️", type:"Sandbox",            embed:true,  url:"https://sandspiel.club/", rating:"3/5" },
+  { name:"Little Alchemy 2",  emoji:"⚗️", type:"Crafting",           embed:true,  url:"https://littlealchemy2.com/", rating:"👍" },
+  { name:"Universal Paperclips", emoji:"📎", type:"Incremental • use Desktop site", embed:true, url:"https://www.decisionproblem.com/paperclips/index2.html", rating:"5/5" },
+  { name:"Tetris",            emoji:"🧱", type:"Arcade",              embed:false, url:"https://play.tetris.com/", rating:"❤️" },
+  { name:"Prince of Persia",  emoji:"🗡️", type:"Platformer (needs keyboard)", embed:true, url:"https://princejs.com/" },
+];
+
+// Android-only: not playable live in a browser, opens the Play Store
+const APP_GAMES = [
+  { name:"Samorost 1", emoji:"🍄", type:"Point-and-click", url:"https://play.google.com/store/apps/details?id=net.amanita_design.Samorost1", rating:"6/5" },
+];
+
+// Public catalog history (not rendered). status: played | proposed | discarded
+const ARCHIVE = [
+  { name:"Bridges (Hashiwokakero)", url:"https://www.chiark.greenend.org.uk/~sgtatham/puzzles/js/bridges.html", status:"discarded", note:"not mobile-friendly on Firefox Android" },
+  { name:"2048",              url:"https://play2048.co/",            status:"discarded", note:"already known" },
+  { name:"Slither.io",        url:"https://slither.io/",            status:"discarded", rating:"3/5", note:"removed from live list: HTTPS redirects to insecure HTTP; also too stressful (timed PvP)" },
+  { name:"Little Alchemy 2",  url:"https://littlealchemy2.com/",    status:"played",    rating:"👍", note:"played several nights" },
+  { name:"Sandspiel",         url:"https://sandspiel.club/",        status:"played",    rating:"3/5", note:"passable, not very fun" },
+  { name:"Nonograms",         url:"https://www.puzzle-nonograms.com/", status:"discarded", note:"too hard for late evening" },
+  { name:"Tetris",            url:"https://play.tetris.com/",       status:"played",    rating:"❤️", note:"favorite; new-tab (blocks iframe)" },
+  { name:"Aquarium (puzzle)", url:"https://www.puzzle-aquarium.com/", status:"discarded", note:"a logic puzzle, not a real aquarium" },
+  { name:"orb.farm",          url:"https://orb.farm/",              status:"played",    rating:"4/5", note:"nice, not complicated" },
+  { name:"A Dark Room",       url:"https://adarkroom.doublespeakgames.com/", status:"discarded", note:"needs arrow keys, not mobile" },
+  { name:"Universal Paperclips", url:"https://www.decisionproblem.com/paperclips/index2.html", status:"played", rating:"5/5", note:"needs Desktop-site mode to load" },
+  { name:"Prince of Persia",  url:"https://princejs.com/",          status:"played",    rating:"—", note:"needs keyboard, awkward on touch; kept for PC" },
+  { name:"Samorost 1",        url:"https://amanita-design.net/games/samorost-1.html", status:"played", rating:"6/5", note:"finished; Android-only app, web version not live" },
+  { name:"Machinarium (demo)", url:"https://amanita-design.net/games/machinarium.html", status:"discarded", note:"full game is paid €10" },
+  { name:"Samorost 2",        url:"https://amanita-design.net/games/samorost-2.html", status:"discarded", note:"paid €4" },
+  { name:"Cube Escape: The Lake", url:"https://www.kongregate.com/en/games/rustylake/cube-escape-the-lake", status:"proposed", note:"Kongregate blocks iframe -> new tab" },
+];
+
+const grid = document.getElementById('grid');
+const appGrid = document.getElementById('appGrid');
+const player = document.getElementById('player');
+const frame = document.getElementById('frame');
+const fallback = document.getElementById('fallback');
+const fallbackLink = document.getElementById('fallbackLink');
+const playerTitle = document.getElementById('playerTitle');
+const openBtn = document.getElementById('openBtn');
+let current = null;
+
+GAMES.forEach(g => {
+  const c = document.createElement('div');
+  c.className = 'card';
+  c.innerHTML = `<div class="emoji">${g.emoji}</div>
+    <div class="name">${g.name}</div>
+    <div class="meta">${g.type}</div>
+    <div class="badges"><span class="badge ${g.embed?'embed':'newtab'}">${g.embed?'in-app':'new tab'}</span>${g.rating?`<span class="rating">⭐ ${g.rating}</span>`:''}</div>`;
+  c.onclick = () => open(g);
+  grid.appendChild(c);
+});
+
+APP_GAMES.forEach(g => {
+  const c = document.createElement('div');
+  c.className = 'card';
+  c.innerHTML = `<div class="emoji">${g.emoji}</div>
+    <div class="name">${g.name}</div>
+    <div class="meta">${g.type}</div>
+    <div class="badges"><span class="badge app">app ↗</span>${g.rating?`<span class="rating">⭐ ${g.rating}</span>`:''}</div>`;
+  c.onclick = () => window.open(g.url, '_blank', 'noopener');
+  appGrid.appendChild(c);
+});
+
+function open(g){
+  current = g;
+  playerTitle.textContent = g.name;
+  fallbackLink.href = g.url;
+  if (g.embed){
+    fallback.classList.remove('show');
+    frame.style.display = 'block';
+    frame.src = g.url;
+  } else {
+    frame.style.display = 'none';
+    frame.removeAttribute('src');
+    fallback.classList.add('show');
+  }
+  player.classList.add('open');
+  history.pushState({game:1}, '');
+}
+function close(){
+  player.classList.remove('open');
+  frame.removeAttribute('src');
+  fallback.classList.remove('show');
+  current = null;
+}
+document.getElementById('closeBtn').onclick = () => { if(history.state&&history.state.game){history.back();} else {close();} };
+openBtn.onclick = () => { if(current) window.open(current.url, '_blank', 'noopener'); };
+document.getElementById('fsBtn').onclick = () => {
+  const el = document.getElementById('frameWrap');
+  const req = el.requestFullscreen || el.webkitRequestFullscreen || el.webkitEnterFullscreen;
+  if (req) { req.call(el).catch(()=>{}); }
+  else { alert('Fullscreen not supported here: use ↗ New tab, then the site\'s own fullscreen.'); }
+};
+window.addEventListener('popstate', close);
+</script>
+</body>
+</html>
