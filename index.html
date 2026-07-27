@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="referrer" content="no-referrer">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src data:; frame-src https://orb.farm https://sandspiel.club https://littlealchemy2.com https://www.decisionproblem.com https://princejs.com; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src data:; frame-src https://orb.farm https://sandspiel.club https://littlealchemy2.com https://www.decisionproblem.com https://princejs.com https://html-classic.itch.zone; base-uri 'none'; form-action 'none'; object-src 'none'">
 <title>Renzo Games 🦔</title>
 <style>
   :root { --bg:#0f1115; --card:#1a1d24; --accent:#4ade80; --text:#e8eaed; --muted:#8b909a; }
@@ -72,6 +72,7 @@
 <script>
 // embed:true = can be shown inside an iframe; false = must open in a new tab
 const GAMES = [
+  { name:"The Legend of Lumina", emoji:"🌲", type:"Adventure puzzle", embed:true, url:"https://html-classic.itch.zone/html/10877122/web/index.html" },
   { name:"Cube Escape: The Lake", emoji:"🎣", type:"Escape room",     embed:false,  url:"https://www.kongregate.com/en/games/rustylake/cube-escape-the-lake" },
   { name:"orb.farm",          emoji:"🐟", type:"Relaxing aquarium",   embed:true,  url:"https://orb.farm/", rating:"4/5" },
   { name:"Sandspiel",         emoji:"🏖️", type:"Sandbox",            embed:true,  url:"https://sandspiel.club/", rating:"3/5" },
@@ -104,6 +105,7 @@ const ARCHIVE = [
   { name:"Machinarium (demo)", url:"https://amanita-design.net/games/machinarium.html", status:"discarded", note:"full game is paid €10" },
   { name:"Samorost 2",        url:"https://amanita-design.net/games/samorost-2.html", status:"discarded", note:"paid €4" },
   { name:"Cube Escape: The Lake", url:"https://www.kongregate.com/en/games/rustylake/cube-escape-the-lake", status:"proposed", note:"Kongregate blocks iframe -> new tab" },
+  { name:"The Legend of Lumina", url:"https://html-classic.itch.zone/html/10877122/web/index.html", status:"proposed", note:"touch-friendly forest adventure puzzle; swipe controls; direct HTTPS WebGL build embeds cleanly" },
 ];
 
 const grid = document.getElementById('grid');
