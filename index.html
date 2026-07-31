@@ -72,7 +72,8 @@
 <script>
 // embed:true = can be shown inside an iframe; false = must open in a new tab
 const GAMES = [
-  { name:"Hexify",            emoji:"🔷", type:"Relaxing merge puzzle", embed:false, url:"https://html-classic.itch.zone/html/16234575/Hexify/index.html?v=1782614498" },
+  { name:"Six Cats Under",    emoji:"🐈", type:"Cozy point-and-click", embed:false, url:"https://html-classic.itch.zone/html/2267583/index.html" },
+  { name:"Hexify",            emoji:"🔷", type:"Relaxing merge puzzle", embed:false, url:"https://html-classic.itch.zone/html/16234575/Hexify/index.html?v=1782614498", rating:"3/5" },
   { name:"The Legend of Lumina", emoji:"🌲", type:"Adventure puzzle", embed:true, url:"https://html-classic.itch.zone/html/10877122/web/index.html" },
   { name:"Cube Escape: The Lake", emoji:"🎣", type:"Escape room",     embed:false,  url:"https://www.kongregate.com/en/games/rustylake/cube-escape-the-lake" },
   { name:"orb.farm",          emoji:"🐟", type:"Relaxing aquarium",   embed:true,  url:"https://orb.farm/", rating:"4/5" },
@@ -90,7 +91,8 @@ const APP_GAMES = [
 
 // Public catalog history (not rendered). status: played | proposed | discarded
 const ARCHIVE = [
-  { name:"Hexify",            url:"https://html-classic.itch.zone/html/16234575/Hexify/index.html?v=1782614498", status:"proposed", note:"relaxing touch-first merge puzzle; free HTML5; direct HTTPS build must open in a new tab because Firefox Android blocks the iframe" },
+  { name:"Six Cats Under",    url:"https://html-classic.itch.zone/html/2267583/index.html", status:"proposed", note:"short cozy point-and-click about rescuing six cats; phone-browser listing and reported playable on touch; opens in a new tab" },
+  { name:"Hexify",            url:"https://html-classic.itch.zone/html/16234575/Hexify/index.html?v=1782614498", status:"played", rating:"3/5", note:"nice; direct HTTPS build must open in a new tab because Firefox Android blocks the iframe" },
   { name:"Bridges (Hashiwokakero)", url:"https://www.chiark.greenend.org.uk/~sgtatham/puzzles/js/bridges.html", status:"discarded", note:"not mobile-friendly on Firefox Android" },
   { name:"2048",              url:"https://play2048.co/",            status:"discarded", note:"already known" },
   { name:"Slither.io",        url:"https://slither.io/",            status:"discarded", rating:"3/5", note:"removed from live list: HTTPS redirects to insecure HTTP; also too stressful (timed PvP)" },
