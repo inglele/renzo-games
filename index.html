@@ -72,7 +72,7 @@
 <script>
 // embed:true = can be shown inside an iframe; false = must open in a new tab
 const GAMES = [
-  { name:"Shape Breakerz",     emoji:"💥", type:"Relaxing tap game",     embed:true,  url:"https://html-classic.itch.zone/html/10755302/index.html?v=1782735003" },
+  { name:"Shape Breakerz",     emoji:"💥", type:"Relaxing tap game",     embed:false, url:"https://html-classic.itch.zone/html/10755302/index.html?v=1782735003" },
   { name:"Six Cats Under",    emoji:"🐈", type:"Cozy point-and-click", embed:false, url:"https://html-classic.itch.zone/html/2267583/index.html" },
   { name:"Hexify",            emoji:"🔷", type:"Relaxing merge puzzle", embed:false, url:"https://html-classic.itch.zone/html/16234575/Hexify/index.html?v=1782614498", rating:"3/5" },
   { name:"The Legend of Lumina", emoji:"🌲", type:"Adventure puzzle", embed:true, url:"https://html-classic.itch.zone/html/10877122/web/index.html" },
@@ -92,7 +92,7 @@ const APP_GAMES = [
 
 // Public catalog history (not rendered). status: played | proposed | discarded
 const ARCHIVE = [
-  { name:"Shape Breakerz",    url:"https://html-classic.itch.zone/html/10755302/index.html?v=1782735003", status:"proposed", note:"relaxing touch game about breaking shapes; free mobile-friendly HTML5 build with no ads; embeds cleanly" },
+  { name:"Shape Breakerz",    url:"https://html-classic.itch.zone/html/10755302/index.html?v=1782735003", status:"proposed", note:"relaxing touch game about breaking shapes; free mobile-friendly HTML5 build with no ads; opens in a new tab because Firefox Android does not load it in the iframe" },
   { name:"Six Cats Under",    url:"https://html-classic.itch.zone/html/2267583/index.html", status:"proposed", note:"short cozy point-and-click about rescuing six cats; phone-browser listing and reported playable on touch; opens in a new tab" },
   { name:"Hexify",            url:"https://html-classic.itch.zone/html/16234575/Hexify/index.html?v=1782614498", status:"played", rating:"3/5", note:"nice; direct HTTPS build must open in a new tab because Firefox Android blocks the iframe" },
   { name:"Bridges (Hashiwokakero)", url:"https://www.chiark.greenend.org.uk/~sgtatham/puzzles/js/bridges.html", status:"discarded", note:"not mobile-friendly on Firefox Android" },
