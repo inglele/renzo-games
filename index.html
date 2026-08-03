@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="referrer" content="no-referrer">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src data:; frame-src https://orb.farm https://sandspiel.club https://littlealchemy2.com https://www.decisionproblem.com https://princejs.com https://html-classic.itch.zone https://suikagame.io; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src data:; frame-src https://orb.farm https://sandspiel.club https://littlealchemy2.com https://www.decisionproblem.com https://princejs.com https://html-classic.itch.zone https://suikagame.io https://hextris.io; base-uri 'none'; form-action 'none'; object-src 'none'">
 <title>Renzo Games 🦔</title>
 <style>
   :root { --bg:#0f1115; --card:#1a1d24; --accent:#4ade80; --text:#e8eaed; --muted:#8b909a; }
@@ -72,6 +72,7 @@
 <script>
 // embed:true = can be shown inside an iframe; false = must open in a new tab
 const GAMES = [
+  { name:"Hextris", emoji:"⬡", type:"Hexagon arcade puzzle", embed:true, url:"https://hextris.io/" },
   { name:"Suika Game", emoji:"🍉", type:"Fruit merge puzzle", embed:true, url:"https://suikagame.io/" },
   { name:"Block Blast Puzzle", emoji:"🟦", type:"Relaxing block puzzle",  embed:true,  url:"https://html-classic.itch.zone/html/17159807/blockblast/index.html?v=1782577994" },
   { name:"KittyToy",           emoji:"🐱", type:"Cozy cat caretaker",     embed:false, url:"https://html-classic.itch.zone/html/10701493/index.html" },
@@ -95,6 +96,7 @@ const APP_GAMES = [
 
 // Public catalog history (not rendered). status: played | proposed | discarded
 const ARCHIVE = [
+  { name:"Hextris", url:"https://hextris.io/", status:"proposed", note:"free hexagon tetris-like arcade puzzle; mobile web app viewport + Hammer.js touch; HTTPS 200, no X-Frame-Options/CSP frame block, embeds cleanly" },
   { name:"Suika Game", url:"https://suikagame.io/", status:"proposed", note:"free watermelon/fruit merge puzzle; mobile viewport and touch play; HTTPS 200, no X-Frame-Options/CSP frame block, embeds cleanly" },
   { name:"Block Blast Puzzle", url:"https://html-classic.itch.zone/html/17159807/blockblast/index.html?v=1782577994", status:"proposed", note:"free untimed 8×8 block puzzle; dedicated touch controls and responsive mobile viewport; direct HTTPS build embeds cleanly" },
   { name:"KittyToy",          url:"https://html-classic.itch.zone/html/10701493/index.html", status:"proposed", note:"free cozy cat-care game inspired by Neko Atsume; touchscreen HTML5 build with responsive viewport; opens in a new tab" },
