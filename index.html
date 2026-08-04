@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="referrer" content="no-referrer">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src data:; frame-src https://orb.farm https://sandspiel.club https://littlealchemy2.com https://www.decisionproblem.com https://princejs.com https://html-classic.itch.zone https://suikagame.io https://hextris.io https://watersort.org; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src data:; frame-src https://orb.farm https://sandspiel.club https://littlealchemy2.com https://www.decisionproblem.com https://princejs.com https://html-classic.itch.zone https://suikagame.io https://hextris.io https://watersort.org https://www.freesolitaire.com; base-uri 'none'; form-action 'none'; object-src 'none'">
 <title>Renzo Games 🦔</title>
 <style>
   :root { --bg:#0f1115; --card:#1a1d24; --accent:#4ade80; --text:#e8eaed; --muted:#8b909a; }
@@ -73,6 +73,7 @@
 // embed:true = can be shown inside an iframe; false = must open in a new tab
 const GAMES = [
   { name:"Water Sort", emoji:"🧪", type:"Relaxing color tube puzzle", embed:true, url:"https://watersort.org/" },
+  { name:"Free Solitaire", emoji:"♠️", type:"Classic Klondike cards", embed:true, url:"https://www.freesolitaire.com/" },
   { name:"Hextris", emoji:"⬡", type:"Hexagon arcade puzzle", embed:true, url:"https://hextris.io/" },
   { name:"Suika Game", emoji:"🍉", type:"Fruit merge puzzle", embed:true, url:"https://suikagame.io/" },
   { name:"Block Blast Puzzle", emoji:"🟦", type:"Relaxing block puzzle",  embed:true,  url:"https://html-classic.itch.zone/html/17159807/blockblast/index.html?v=1782577994" },
@@ -97,6 +98,7 @@ const APP_GAMES = [
 
 // Public catalog history (not rendered). status: played | proposed | discarded
 const ARCHIVE = [
+  { name:"Free Solitaire", url:"https://www.freesolitaire.com/", status:"proposed", note:"free classic Klondike solitaire; mobile viewport device-width and touch-friendly full-screen web app; HTTPS 200, no X-Frame-Options/CSP frame block, embeds cleanly" },
   { name:"Water Sort", url:"https://watersort.org/", status:"proposed", note:"free untimed color tube sorting puzzle; mobile viewport and tap-to-pour; HTTPS 200, no X-Frame-Options/CSP frame block, embeds cleanly" },
   { name:"Hextris", url:"https://hextris.io/", status:"proposed", note:"free hexagon tetris-like arcade puzzle; mobile web app viewport + Hammer.js touch; HTTPS 200, no X-Frame-Options/CSP frame block, embeds cleanly" },
   { name:"Suika Game", url:"https://suikagame.io/", status:"proposed", note:"free watermelon/fruit merge puzzle; mobile viewport and touch play; HTTPS 200, no X-Frame-Options/CSP frame block, embeds cleanly" },
