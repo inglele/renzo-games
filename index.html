@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="referrer" content="no-referrer">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src data:; frame-src https://orb.farm https://sandspiel.club https://littlealchemy2.com https://www.decisionproblem.com https://princejs.com https://html-classic.itch.zone https://suikagame.io https://hextris.io https://watersort.org https://www.freesolitaire.com https://minesweeper.online; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src data:; frame-src https://orb.farm https://sandspiel.club https://littlealchemy2.com https://www.decisionproblem.com https://princejs.com https://html-classic.itch.zone https://suikagame.io https://hextris.io https://watersort.org https://www.freesolitaire.com https://minesweeper.online https://www.puzzle-light-up.com https://www.mathsisfun.com; base-uri 'none'; form-action 'none'; object-src 'none'">
 <title>Renzo Games 🦔</title>
 <style>
   :root { --bg:#0f1115; --card:#1a1d24; --accent:#4ade80; --text:#e8eaed; --muted:#8b909a; }
@@ -103,7 +103,9 @@ const GAMES = [
   { name:"Suika Game", emoji:"🍉", type:"Fruit merge puzzle", cat:"puzzle", embed:true, url:"https://suikagame.io/" },
   { name:"Block Blast Puzzle", emoji:"🟦", type:"Relaxing block puzzle", cat:"puzzle", embed:true, url:"https://html-classic.itch.zone/html/17159807/blockblast/index.html?v=1782577994" },
   { name:"Hexify", emoji:"🔷", type:"Relaxing merge puzzle", cat:"puzzle", embed:false, url:"https://html-classic.itch.zone/html/16234575/Hexify/index.html?v=1782614498", rating:"3/5" },
+  { name:"Light Up", emoji:"💡", type:"Akari light puzzle", cat:"puzzle", embed:true, url:"https://www.puzzle-light-up.com/" },
   { name:"Free Solitaire", emoji:"♠️", type:"Classic Klondike cards", cat:"cards", embed:true, url:"https://www.freesolitaire.com/" },
+  { name:"FreeCell", emoji:"🃏", type:"Classic FreeCell cards", cat:"cards", embed:true, url:"https://www.mathsisfun.com/games/freecell.html" },
   { name:"KittyToy", emoji:"🐱", type:"Cozy cat caretaker", cat:"cozy", embed:false, url:"https://html-classic.itch.zone/html/10701493/index.html" },
   { name:"Six Cats Under", emoji:"🐈", type:"Cozy point-and-click", cat:"cozy", embed:false, url:"https://html-classic.itch.zone/html/2267583/index.html" },
   { name:"orb.farm", emoji:"🐟", type:"Relaxing aquarium", cat:"cozy", embed:true, url:"https://orb.farm/", rating:"4/5" },
@@ -124,6 +126,8 @@ const APP_GAMES = [
 
 // Public catalog history (not rendered). status: played | proposed | discarded
 const ARCHIVE = [
+  { name:"Light Up", url:"https://www.puzzle-light-up.com/", status:"proposed", note:"free Akari/Light Up logic puzzle; mobile viewport device-width and tap cells; HTTPS 200, no X-Frame-Options/CSP frame block, embeds cleanly" },
+  { name:"FreeCell", url:"https://www.mathsisfun.com/games/freecell.html", status:"proposed", note:"free classic FreeCell solitaire; mobile viewport and touch-friendly card taps; HTTPS 200, no X-Frame-Options/CSP frame block, embeds cleanly" },
   { name:"Minesweeper Online", url:"https://minesweeper.online/", status:"proposed", note:"free classic minesweeper; mobile viewport device-width and touch taps; HTTPS 200, no X-Frame-Options/CSP frame block, embeds cleanly" },
   { name:"Free Solitaire", url:"https://www.freesolitaire.com/", status:"proposed", note:"free classic Klondike solitaire; mobile viewport device-width and touch-friendly full-screen web app; HTTPS 200, no X-Frame-Options/CSP frame block, embeds cleanly" },
   { name:"Water Sort", url:"https://watersort.org/", status:"proposed", note:"free untimed color tube sorting puzzle; mobile viewport and tap-to-pour; HTTPS 200, no X-Frame-Options/CSP frame block, embeds cleanly" },
