@@ -117,6 +117,7 @@ const GAMES = [
   { name:"Little Alchemy 2", emoji:"⚗️", type:"Crafting", cat:"sandbox", embed:true, url:"https://littlealchemy2.com/", rating:"👍" },
   { name:"Universal Paperclips", emoji:"📎", type:"Incremental • use Desktop site", cat:"sandbox", embed:true, url:"https://www.decisionproblem.com/paperclips/index2.html", rating:"5/5" },
   { name:"Mahjong Solitaire", emoji:"🀄", type:"Calm tile-matching puzzle", cat:"puzzle", embed:false, url:"https://juju.games/mahjong" },
+  { name:"Bug Catcher", emoji:"🦋", type:"Relaxing bug-collecting game", cat:"cozy", embed:false, url:"https://juju.games/play/bug-catcher" },
 ];
 
 // Android-only: not playable live in a browser, opens the Play Store
@@ -126,6 +127,7 @@ const APP_GAMES = [
 
 // Public catalog history (not rendered). status: played | proposed | discarded
 const ARCHIVE = [
+  { name:"Bug Catcher", url:"https://juju.games/play/bug-catcher", status:"proposed", note:"free low-pressure bug collecting game; mobile viewport and native pointer/touch drag controls; no ads, account or external game scripts; HTTPS 200; CSP frame-ancestors self so new-tab only" },
   { name:"Mahjong Solitaire", url:"https://juju.games/mahjong", status:"proposed", note:"free calm mahjong solitaire; mobile viewport device-width, large tiles, phone-sized board, no ads/account/timer; HTTPS 200; CSP frame-ancestors self so new-tab only" },
   { name:"Light Up", url:"https://www.puzzle-light-up.com/", status:"proposed", note:"free Akari/Light Up logic puzzle; mobile viewport device-width and tap cells; HTTPS 200, no X-Frame-Options/CSP frame block, embeds cleanly" },
   { name:"FreeCell", url:"https://www.mathsisfun.com/games/freecell.html", status:"discarded", note:"not playable on smartphone (Daniele 2026-08-06); removed from live list" },
